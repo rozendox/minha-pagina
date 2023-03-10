@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Perfil do GitHub - rozendox</title>
+	<style>
+		table {
+			border-collapse: collapse;
+			width: 50%;
+			margin: 0 auto;
+		}
+		th, td {
+			padding: 8px;
+			text-align: left;
+			border-bottom: 1px solid #ddd;
+		}
+		th {
+			background-color: #f2f2f2;
+		}
+		h1 {
+			text-align: center;
+			margin-top: 50px;
+		}
+	</style>
+</head>
+<body>
+	<h1>Perfil do GitHub - rozendox</h1>
+	<table>
+		<tr>
+			<th>Nome de usuário:</th>
+			<td id="username"></td>
+		</tr>
+		<tr>
+			<th>Biografia:</th>
+			<td id="bio"></td>
+		</tr>
+		<tr>
+			<th>Número de seguidores:</th>
+			<td id="followers"></td>
+		</tr>
+		<tr>
+			<th>Número de repositórios públicos:</th>
+			<td id="public_repos"></td>
+		</tr>
+	</table>
+	
+	<script>
+		// fazer solicitação HTTP para a API do GitHub
+		fetch('https://api.github.com/users/rozendox', {
+			headers: {
+				Authorization: 'token colocar token aqui '
+			}
+		})
+		.then(response => response.json())
+		.then(data => {
+			// atualizar células da tabela HTML com informações do perfil
+			document.getElementById('username').innerHTML = data.login;
+			document.getElementById('bio').innerHTML = data.bio;
+			document.getElementById('followers').innerHTML = data.followers;
+			document.getElementById('public_repos').innerHTML = data.public_repos;
+		})
+		.catch(error => console.error(error));
+	</script>
+</body>
+</html>
